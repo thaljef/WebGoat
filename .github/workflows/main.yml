@@ -25,6 +25,7 @@ jobs:
     - name: Polaris setup
       run: |
         wget $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+        pwd; ls -l
         unzip -j polaris_cli-linux64.zip -d /tmp
         /tmp/polaris setup -p chuckaude-hello-java -e shell='mvn -B clean' -b shell='mvn -B compile'
         /tmp/polaris install
