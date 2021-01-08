@@ -10,7 +10,7 @@ on:
 jobs:
   polaris:
  
-    runs-on: ubuntu-latest
+    runs-on: self-hosted 
  
     env:
       POLARIS_SERVER_URL:  https://sipse.polaris.synopsys.com
