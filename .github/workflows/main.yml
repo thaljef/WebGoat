@@ -1,6 +1,6 @@
-# Example workflow for Polaris on private self-hosted runners
+# Example workflow for Polaris on public GitHub-hosted runners
  
-name: Polaris private runner
+name: Polaris public runner
 on:
   push:
     branches: [ master ]
@@ -10,7 +10,7 @@ on:
 jobs:
   polaris:
  
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
  
     env:
       POLARIS_SERVER_URL:  https://sipse.polaris.synopsys.com/
@@ -23,6 +23,10 @@ jobs:
       with:
         java-version: 1.8
     - name: Polaris setup
-      run: /opt/polaris/bin/polaris setup -p thaljef-webgoat -e shell='mvn -B clean' -b shell='mvn -B compile'
+      run: |
+        wget -q $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+        unzip -j polaris_cli-linux64.zip -d /tmp
+        /tmp/polaris setup -p chuckaude-hello-java -e shell='mvn -B clean' -b shell='mvn -B compile'
+        /tmp/polaris install
     - name: Polaris scan
-      run: /opt/polaris/bin/polaris analyze -w
+      run: /tmp/polaris analyze -w
