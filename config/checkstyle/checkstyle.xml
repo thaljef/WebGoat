@@ -25,7 +25,7 @@
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
 
     <module name="SuppressionFilter">
-        <property name="file" value="${suppressionsLocation}" default="target/checkstyle-suppressions.xml"/>
+        <property name="file" value="${suppressionsLocation}" default="config/checkstyle/suppressions.xml"/>
     </module>
     <module name="TreeWalker">
         <module name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck">
